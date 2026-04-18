@@ -27,7 +27,7 @@ Function PayloadModel {
             Set _payloadParams[KEY_PAYLOAD_MASS] to Ship:Mass - 1451.42.
         }    
         If vesselType = VESSEL_TYPE_FALCON_9 { 
-            Set _payloadParams[KEY_PAYLOAD_MASS] TO Ship:Mass -  1173.2399. // Cargo Fairing
+            Set _payloadParams[KEY_PAYLOAD_MASS] TO Ship:Mass -  175.434. // Cargo Fairing
 
             If Ship:Name:Contains("Crew") { 
                 Set _payloadParams[KEY_PAYLOAD_MASS] TO Ship:Mass - 1172.6. // Cargo

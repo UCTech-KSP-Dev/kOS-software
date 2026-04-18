@@ -56,14 +56,14 @@ Local coreEngineController to EngineManager(coreEngine, VESSEL_TYPE_FALCON_BOOST
 Local BoosterMaxPitchOver to 75.
 
 Local launchProfileInitial to LaunchProfileModel(1.8, 9, 3, BoosterMaxPitchOver).
-Local launchProfileSecondary to LaunchProfileModel(2.45, 10, 9.7, BoosterMaxPitchOver).
+Local launchProfileSecondary to LaunchProfileModel(4, 10, 9.7, BoosterMaxPitchOver).
 Local launchProfile to launchProfileInitial.
 Local launchProfileTransitionAltitude to 4_000.
 
-Local launchHeading to 45.4.
-Local targetRoll to -180.
-Local sideBoosterSeparationAtFuelAmount to 2400.
-Local upperstageSeparationAtFuelAmount to 2650. 
+Local launchHeading to 90.
+Local targetRoll to 0.
+Local sideBoosterSeparationAtFuelAmount to 2300.
+Local upperstageSeparationAtFuelAmount to 2000. 
 // Local upperstageSeparationAtFuelAmount to 1700. 
 
 If not hasSideBoosters { 
@@ -132,7 +132,12 @@ physicsRangeController:SetPhysicsRangesForRecoveryLaunch().
 physicsRangeController:GetLoadDistanceDescriptions().
 
 GetConfirmation(flightStatus:GetTitle()).
+AG1 on.
+Wait 5.
 RunFlightStatusScreen(flightStatus).
+
+
+
 
 flightStatus:Update("LAUNCH SEQUENCE INITIATED").
 
