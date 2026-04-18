@@ -27,7 +27,7 @@ Local boosterRadarOffset to 34.3.
 Local overshootMeters to 100.
 Local landingSiteAltitude to 5.
 Local altitudePositionTarget to landingSiteAltitude.                                      
-Local truelandingSite to LANDING_SITES[KEY_DS_OCEAN_MED].
+Local truelandingSite to LANDING_SITES[KEY_DS_SOL_NG].
 Local landingsite to LandingStatusModel(truelandingsite, altitudePositionTarget):Overshoot(200):GetLandingSite(). 
 Local rollReferenceOvershootSite is LandingStatusModel(truelandingSite, altitudePositionTarget):Overshoot(10000):GetLandingSite().
 
@@ -66,7 +66,7 @@ Local targetRoll to 0.
 
 Lock Steering to Heading(landingStatus:RetrogradeHeading(), boostbackPitch, targetRoll).
 
-WaitUntilOriented(2,10). 
+
 flightStatus:Update("BOOSTBACK ORIENTATION").        
          
 Local boostback to BoostbackBurnController(landingStatus, landingSteering).
@@ -115,7 +115,7 @@ Wait Until Altitude < 80_000.
 
 
 Wait Until Altitude < 60_000.
-    flightStatus:Update("PRE LANDING BURN").            
+    flightStatus:Update("Guidance Corrections").            
 
 Local lastVerticalSpeed to Ship:VerticalSpeed.
 Local landingBurnStart to false.     
@@ -149,7 +149,7 @@ Until landingBurnStart {
     Local minAoA to 5.
     
     Local maxBurnStartAltitude to 6_000.
-    Local suicideMargin to 20.
+    Local suicideMargin to 10.
 
     landingSteering:SetMaxAoA((proportion * aeroMaxAoA) + minAoA).    
 
@@ -194,7 +194,7 @@ Until verticalSpeedHoldStart {
          (Abs(Ship:VerticalSpeed) < 20 or Ship:Velocity:Surface:Mag < 20)) {
             
         Set swtichedTo3Engines to true.   
-        Lock Throttle to 0.25.     
+        Lock Throttle to 0.55.     
         flightStatus:Update("LANDING BURN - 1 Engines").   
               
         AG3 on.
@@ -226,14 +226,16 @@ Until verticalSpeedHoldStart {
         If landingBurn:TrueRadar() < 800 { 
             landingSteering:SetMaxAoA(-5). 
         }
+        If landingBurn:TrueRadar() < 350 { 
+            Set vsTarget to -15.
+        }
         If landingBurn:TrueRadar() < 150 { 
             Set vsTarget to -10.
         }
-        If landingBurn:TrueRadar() < 50 {
-            landingSteering:SetMaxAoA(-2.5). 
-            Set vsTarget to -5.
+        If landingBurn:TrueRadar() < 50 { 
+        Set vsTarget to -5.
         }
-        If landingBurn:TrueRadar() < 10 { 
+        If landingBurn:TrueRadar() < 30 { 
             Set vsTarget to -1.
         }
         If not horizontalKillStart and landingBurn:TrueRadar() < 15 { 

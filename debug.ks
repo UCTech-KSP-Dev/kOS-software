@@ -46,6 +46,11 @@ DeletePath(LogFilepath).
 
 
 
+
+
+
+
+
 // Local starshipCpu to Processor("STARSHIP").
 // Local sendIt to starshipCpu:Connection:SendMessage("test").
 // print "send: " + sendit.
@@ -159,9 +164,23 @@ physicsRangeController:SetPhysicsRangesForRecoveryLaunch(false).
 
 // DescribePartItemToFile(part, LogFilePath).
 
+// RUNONCEPATH("common/landing/sites").
+
+// lOCAL p1 to LANDING_SITES[KEY_DS_OCEAN_MED].
+// LOCAL p2 to LANDING_SITES[KEY_KSC_PAD_39A].
 
 
-// Log Ship:GeoPosition to LogFilepath.
+// PRINT (P1:pOSITION - P2:pOSITION):MAG.
+
+
+lOCAL p3 to LANDING_SITES[KEY_DS_SOL_LCF].
+lOCAL p4 to  Ship:Geoposition.
+
+print Ship:Geoposition.
+PRINT (P3:pOSITION - P4:pOSITION):MAG.
+
+Log Ship:GeoPosition to LogFilepath.
+
 
 // Local part to Ship:PartsTagged("MERLIN_9")[0].
 // DescribePartItemToFile(part, LogFilepath).
@@ -423,3 +442,6 @@ physicsRangeController:SetPhysicsRangesForRecoveryLaunch(false).
 //     Print "Altitude: " + Round(Altitude, 0).
 //     Print "true RADAR: " + Round(TrueRadar, 0).
 // }
+
+
+

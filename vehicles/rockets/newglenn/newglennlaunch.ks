@@ -33,7 +33,7 @@ Local targetRoll to 0.
 
 Local vesselType to VESSEL_TYPE_NEWGLENN.
 Local boosterTank to Ship:PartsTagged("BOOSTER_TANK")[0].
-Local landingSite to LANDING_SITES[KEY_KSC_LNDG_ZONE_NORTH].
+Local landingSite to LANDING_SITES[KEY_DS_SOL_NG].
 
 Local physicsRangeController to PhysicsRangeModel(). 
 physicsRangeController:SetPhysicsRangesForRecoveryLaunch(false).
@@ -97,7 +97,7 @@ Until stageSeparation {
 
     If Addons:TR:HasImpact { 
       Set stageSeparation to boosterFuelResource:Amount < stageSeparationAtFuelAmount 
-      or (Addons:TR:ImpactPos:Position - landingSite:Position):Mag > 200_000.
+      or (Addons:TR:ImpactPos:Position - landingSite:Position):Mag > 180_000.
 .
     }
     Wait 0.01.
